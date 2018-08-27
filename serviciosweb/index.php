@@ -5,6 +5,6 @@
         <title>Servicios web JEREMIAS</title>
     </head>
     <body>
-        <h2>Servicios web</h2>
+        <h2>Servicios web JEREMIAS</h2>
     </body>
 </html>

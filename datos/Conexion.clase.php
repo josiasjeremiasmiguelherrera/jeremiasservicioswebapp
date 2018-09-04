@@ -1,6 +1,6 @@
 <?php
 
-require_once 'configuracion.php';
+require_once '../datos/configuracion.php';
 require_once '../util/funciones/Funciones.clase.php';
 
 

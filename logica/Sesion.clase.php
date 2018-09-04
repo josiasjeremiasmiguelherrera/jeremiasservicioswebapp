@@ -1,42 +1,45 @@
 <?php
+
 require_once '../datos/Conexion.clase.php';
 
-class Sesion extends Conexion {
-    private $email;
-    private $clave;
-    
-    function getEmail() {
-        return $this->email;
-    }
+class Sesion extends Conexion{
+   private $email;
+   private $clave;
+   
+   function getEmail() {
+       return $this->email;
+   }
 
-    function getClave() {
-        return $this->clave;
-    }
+   function getClave() {
+       return $this->clave;
+   }
 
-    function setEmail($email) {
-        $this->email = $email;
-    }
+   function setEmail($email) {
+       $this->email = $email;
+   }
 
-    function setClave($clave) {
-        $this->clave = $clave;
-    }
+   function setClave($clave) {
+       $this->clave = $clave;
+   }
 
-    public function validarSesion() {
-        try {
-            $sql = "select * from f_validar_sesion(:p_email, :p_clave)";
-            $sentencia = $this->dblink->prepare($sql);
-            $sentencia->bindParam(":p_email", $this->getEmail());
-            $sentencia->bindParam(":p_clave", $this->getClave());
-            $sentencia->execute();
-            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
-            return $resultado;
-        } catch (Exception $exc) {
-            throw $exc;
-        }
-    }
-    
-    //Función que permite obtener la foto del usuario
-    public function obtenerFoto($codigo) {
+   public function validarSesion(){
+       try {
+           $sql = "select * from f_validar_sesion(:p_email, :p_clave)";
+           $sentencia = $this->dblink->prepare($sql);
+           $sentencia->bindParam(":p_email", $this->getEmail());
+           $sentencia->bindParam(":p_clave", $this->getClave());
+           $sentencia->execute();
+           $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+           return $resultado;
+       } catch (Exception $exc) {
+           throw $exc;
+           
+       }
+          
+   }
+   
+   // FUNCION QUE PERMITE OBTENER LA FOTO DEL USUARIO 
+   public function obtenerFoto($codigo) {
         $foto = "../fotos-usuarios/".$codigo;
 
         if (file_exists( $foto . ".png" )){
@@ -64,6 +67,8 @@ class Sesion extends Conexion {
     }
     
 
-    
-    
+   
+   
+ 
 }
+

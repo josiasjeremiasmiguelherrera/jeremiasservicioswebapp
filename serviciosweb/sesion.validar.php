@@ -26,14 +26,14 @@ try {
     //Agregar la foto a la variable $resultado
     $resultado["foto"] = $foto;
     
-    //Generar el token de seguridad
-    require_once './token.generar.php';
-    $token = generarToken(null, 60*60);
+    //GENERAR EL TOKEN DE SEGURIDAD
+    require_once'./token.generar.php';
+    $token = generarToken(null,60*60);
     $resultado["token"] = $token;
+    
     
     //Preguntar por el estado que ha devuelto la función de la BD
     if ($resultado["estado"]==200){
-        unset($resultado["estado"]);
         Funciones::imprimeJSON(200, "Bienvenido a la aplicación", $resultado);
     }else{
         //$resultado["nombre_usuario"] = Mensaje de error que viene de la función que esta en la BD

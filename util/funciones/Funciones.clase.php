@@ -4,9 +4,7 @@ require_once 'json.hpack.php';
 
 class Funciones {
     
-    //public static $DIRECCION_WEB_SERVICE = "https://ws-p3-2018-i-hmera.herokuapp.com/webservice/";
-    public static $DIRECCION_WEB_SERVICE = "http://localhost/serviciosweb-pp/serviciosweb/";
-
+    public static $DIRECCION_WEB_SERVICE = "https://examenandroid.herokuapp.com/serviciosweb/";
     public static function mensaje($mensaje, $tipo, $archivoDestino="", $tiempo=0) {
         $estiloMensaje = "";
 
@@ -188,4 +186,32 @@ class Funciones {
         );
         return $string;
     }
+    //verificar si va en este lugar
+    public function obtenerFoto($codigo) {
+        $foto = "../fotos-usuarios/".$codigo;
+
+        if (file_exists( $foto . ".png" )){
+            $foto = $foto . ".png";
+
+        }else if (file_exists( $foto . ".PNG" )){
+            $foto = $foto . ".PNG";
+
+        }else if (file_exists( $foto . ".jpg" )){
+            $foto = $foto . ".jpg";
+
+        }else if (file_exists( $foto . ".JPG" )){
+            $foto = $foto . ".JPG";
+
+        }else{
+            $foto = "none";
+        }
+
+        if ($foto == "none"){
+            return $foto;
+        }else{
+            return Funciones::$DIRECCION_WEB_SERVICE . $foto;
+        }
+
+    }
+    
 }
